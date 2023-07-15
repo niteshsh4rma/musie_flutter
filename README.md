@@ -21,7 +21,6 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [Built Using](#built_using)
 - [Authors](#authors)
 
@@ -31,7 +30,7 @@ Musie is an open source music player designed for seamless and immersive music p
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
@@ -50,6 +49,7 @@ Say what the step will be
 
 ```
 fvm use
+fvm flutter clean && fvm flutter pub get
 fvm flutter pub run
 ```
 
