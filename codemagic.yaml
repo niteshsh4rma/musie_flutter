@@ -1,0 +1,17 @@
+workflows:
+  prod-build:
+    name: Create Production Build
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+      cancel_previous_builds: true
+  dev-build:
+    name: Create Development Build
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: dev
+      cancel_previous_builds: true
