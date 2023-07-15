@@ -1,0 +1,11 @@
+{
+    "dart.lineLength": 80,
+    "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    "files.exclude": {
+        "**/.git": true,
+    },
+    "files.watcherExclude": {
+        "**/.dart_tool": true,
+        "**/.fvm/flutter_sdk": true,
+    }
+}

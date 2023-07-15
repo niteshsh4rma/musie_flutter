@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - directory: /
+    package-ecosystem: pub
+    rebase-strategy: auto
+    schedule:
+      interval: daily

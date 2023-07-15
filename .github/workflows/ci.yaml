@@ -1,0 +1,58 @@
+name: CI
+on:
+    - pull_request
+    - workflow_dispatch
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    lint:
+        name: Lint Code Base
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: read
+            statuses: write
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Lint Code Base
+              uses: super-linter/super-linter@v5
+              env:
+                VALIDATE_ALL_CODEBASE: false
+                DEFAULT_BRANCH: main
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    analyze:
+        name: Analyze Code Base
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Branch
+              uses: actions/checkout@v3
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Setup Flutter SDK
+              uses: subosito/flutter-action@v2
+              with:
+                channel: stable
+
+            - run: flutter --version
+
+            - name: Install Flutter Dependencies
+              run: flutter pub get
+
+            - name: Analyze Project Source
+              run: flutter analyze --no-fatal-infos
+
+            - name: Format dart files with 80 line length
+              run: find . -type f -name '*.dart' ! -name '*.g.dart' ! -name '*app_localizations*.dart' ! -name '*.mocks.dart' | xargs dart format --line-length 80 --output=none --set-exit-if-changed
+
+            - name: Format generated dart files with 80 chars
+              run: find . -type f -name '*.g.dart' ! -name '*.mocks.dart'  | xargs dart format --output=none --set-exit-if-changed
