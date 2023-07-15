@@ -1,7 +1,7 @@
-<p align="center">
+<h1 align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="assets/images/app_icon.png" alt="Musie logo"></a>
-</p>
+  <img width=200px height=200px src="assets/images/app_icon.png" alt="Musie logo"></a>
+</h1>
 
 <h1 align="center">Musie</h3>
 
@@ -15,7 +15,7 @@
 ---
 
 <p align="center"> Musie is an Open Source Offline Music Player
-    <br> 
+  <br>
 </p>
 
 ## 📝 Table of Contents
@@ -37,6 +37,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them.
 
+bash
 ```
 flutter - stable
 fvm - latest
@@ -48,6 +49,7 @@ A step by step series of examples that tell you how to get a development env run
 
 Say what the step will be
 
+bash
 ```
 fvm use
 fvm flutter clean && fvm flutter pub get
@@ -60,7 +62,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 - Coming Soon
 
-### Break down into end to end tests
+### Break down into end-to-end tests
 
 - Coming Soon
 
