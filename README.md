@@ -7,9 +7,6 @@
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/niteshsh4rma/musie_flutter/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/niteshsh4rma/musie_flutter/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -72,8 +69,9 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [Flutter](https://www.flutter.dev/) - Flutter
+- [Flutter](https://www.flutter.dev/)
 
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@niteshsh4rma](https://github.com/niteshsh4rma) - Idea & Initial work
+- You - Check [Contributing Guidelines](./CONTRIBUTING.md)
