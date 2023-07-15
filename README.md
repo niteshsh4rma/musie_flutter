@@ -7,6 +7,7 @@
 
 <div align="center">
 
+[![Codemagic build status](https://api.codemagic.io/apps/64b287f7ac19c1b98c902e12/64b287f7ac19c1b98c902e11/status_badge.svg)](https://codemagic.io/apps/64b287f7ac19c1b98c902e12/64b287f7ac19c1b98c902e11/latest_build)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
