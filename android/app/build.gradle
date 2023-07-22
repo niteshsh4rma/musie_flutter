@@ -68,9 +68,11 @@ android {
         development {
             dimension "default"
             applicationIdSuffix ".dev"
+            resValue "string", "app_name", "Musie (Dev)"
         }
         production {
             dimension "default"
+            resValue "string", "app_name", "Musie"
         }
     }
 
