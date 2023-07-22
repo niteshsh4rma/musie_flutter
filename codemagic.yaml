@@ -45,6 +45,7 @@ workflows:
         - ~/.gradle/caches
     environment:
       groups:
+        - publish
         - shorebird
       flutter: stable
     publishing:
