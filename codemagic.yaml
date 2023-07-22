@@ -76,11 +76,11 @@ workflows:
 
           # Add Shorebird to PATH
           echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
-
-          # export SHOREBIRD_TOKEN
-          export SHOREBIRD_TOKEN="$SHOREBIRD_TOKEN"
       - name: Shorebird Build
         script: |
+          shorebird --help
+          shorebird account
+          echo $SHOREBIRD_TOKEN
           echo "Using type: $TYPE"
           # If type is not "patch", exit with error
           if [ "$TYPE" != "patch" ]; then
