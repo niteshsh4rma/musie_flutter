@@ -1,6 +1,31 @@
 workflows:
   prod-build:
     name: Create Production Build
+    environment:
+      vars:
+        TYPE: 'release'
+      groups:
+        - shorebird
+      flutter: stable
+    scripts:
+      - name: Setup Shorebird
+        script: |
+          # Install Shorebird
+          curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
+
+          # Add Shorebird to PATH
+          echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
+      - name: Shorebird Build
+        script: |
+          echo "Using type: $TYPE"
+          # If type is not "release", exit with error
+          if [ "$TYPE" != "release" ]; then
+            echo "TYPE must be 'release'"
+            exit 1
+          fi
+
+          echo "🚀 Running release command"
+          shorebird release android --force
     triggering:
       events:
         - push
@@ -9,6 +34,31 @@ workflows:
       cancel_previous_builds: true
   dev-build:
     name: Create Development Build
+    environment:
+      vars:
+        TYPE: 'patch'
+      groups:
+        - shorebird
+      flutter: stable
+    scripts:
+      - name: Setup Shorebird
+        script: |
+          # Install Shorebird
+          curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
+
+          # Add Shorebird to PATH
+          echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
+      - name: Shorebird Build
+        script: |
+          echo "Using type: $TYPE"
+          # If type is not "patch", exit with error
+          if [ "$TYPE" != "patch" ]; then
+            echo "TYPE must be 'patch'"
+            exit 1
+          fi
+
+          echo "🚀 Running patch command"
+          shorebird patch android --force
     triggering:
       events:
         - push
