@@ -26,7 +26,7 @@ workflows:
           # Add Shorebird to PATH
           echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
       - name: Shorebird Build
-        script: shorebird release android
+        script: shorebird release android -y
     triggering:
       events:
         - push
@@ -63,7 +63,7 @@ workflows:
           # Add Shorebird to PATH
           echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
       - name: Shorebird Build
-        script: shorebird release android
+        script: shorebird release android -y
     triggering:
       events:
         - push
