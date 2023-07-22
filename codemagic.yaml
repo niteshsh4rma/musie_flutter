@@ -8,12 +8,13 @@ workflows:
         - ~/.gradle-caches
     environment:
       groups:
+        - publish
         - shorebird
       flutter: stable
     publishing:
       email:
         recipients:
-          - niteshsharma312000@gmail.com
+          - ${PUBLISH_EMAIL}
     scripts:
       - name: Run pub get
         script: flutter pub get
@@ -49,7 +50,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - niteshsharma312000@gmail.com
+          - ${PUBLISH_EMAIL}
     scripts:
       - name: Run pub get
         script: flutter pub get
