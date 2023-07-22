@@ -4,4 +4,7 @@
 
 # This is the unique identifier assigned to your app.
 # It is used by your app to request the correct patches from Shorebird servers.
-app_id: effc0253-f97a-4cb5-9a62-12a9e385c14b
+app_id: 6d5d7ab3-78d2-4737-bc1c-b35ff29f654b
+flavors:
+  development: 6d5d7ab3-78d2-4737-bc1c-b35ff29f654b
+  production: 3a5159ee-c90a-489f-96bd-97cadedc0259
