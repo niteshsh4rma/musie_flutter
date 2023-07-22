@@ -1,13 +1,25 @@
 workflows:
   prod-build:
     name: Create Production Build
+    instance_type: linux
+    max_build_duration: 60
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - ~/.gradle-caches
     environment:
       vars:
         TYPE: 'release'
       groups:
         - shorebird
       flutter: stable
+    publishing:
+      email:
+        recipients:
+          - niteshsharma312000@gmail.com
     scripts:
+      - name: Run pub get
+        script: flutter pub get
       - name: Setup Shorebird
         script: |
           # Install Shorebird
@@ -15,6 +27,9 @@ workflows:
 
           # Add Shorebird to PATH
           echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
+
+          # export SHOREBIRD_TOKEN
+          export SHOREBIRD_TOKEN="$SHOREBIRD_TOKEN"
       - name: Shorebird Build
         script: |
           echo "Using type: $TYPE"
@@ -32,15 +47,30 @@ workflows:
       branch_patterns:
         - pattern: main
       cancel_previous_builds: true
+    artifacts:
+      - build/**/outputs/bundle/**/*.aab
+      - build/**/outputs/apk/**/*.apk
   dev-build:
     name: Create Development Build
+    instance_type: linux
+    max_build_duration: 60
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - ~/.gradle/caches
     environment:
       vars:
         TYPE: 'patch'
       groups:
         - shorebird
       flutter: stable
+    publishing:
+      email:
+        recipients:
+          - niteshsharma312000@gmail.com
     scripts:
+      - name: Run pub get
+        script: flutter pub get
       - name: Setup Shorebird
         script: |
           # Install Shorebird
@@ -48,6 +78,9 @@ workflows:
 
           # Add Shorebird to PATH
           echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
+
+          # export SHOREBIRD_TOKEN
+          export SHOREBIRD_TOKEN="$SHOREBIRD_TOKEN"
       - name: Shorebird Build
         script: |
           echo "Using type: $TYPE"
@@ -65,3 +98,5 @@ workflows:
       branch_patterns:
         - pattern: dev
       cancel_previous_builds: true
+    artifacts:
+      - build/**/outputs/apk/**/*.apk
