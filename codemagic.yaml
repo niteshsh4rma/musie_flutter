@@ -1,7 +1,6 @@
 workflows:
   prod-build:
     name: Create Production Build
-    instance_type: linux
     max_build_duration: 60
     cache:
       cache_paths:
@@ -52,7 +51,6 @@ workflows:
       - build/**/outputs/apk/**/*.apk
   dev-build:
     name: Create Development Build
-    instance_type: linux
     max_build_duration: 60
     cache:
       cache_paths:
