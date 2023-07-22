@@ -1,0 +1,74 @@
+workflows:
+  prod-build:
+    name: Create Production Build
+    max_build_duration: 60
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - ~/.gradle-caches
+    environment:
+      groups:
+        - publish
+        - shorebird
+      flutter: stable
+    publishing:
+      email:
+        recipients:
+          - ${PUBLISH_EMAIL}
+    scripts:
+      - name: Run pub get
+        script: flutter pub get
+      - name: Setup Shorebird
+        script: |
+          # Install Shorebird
+          curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
+
+          # Add Shorebird to PATH
+          echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
+      - name: Shorebird Build (production)
+        script: shorebird release android --flavor production --force
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+      cancel_previous_builds: true
+    artifacts:
+      - build/**/outputs/bundle/**/*.aab
+      - build/**/outputs/apk/**/*.apk
+  dev-build:
+    name: Create Development Build
+    max_build_duration: 60
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - ~/.gradle/caches
+    environment:
+      groups:
+        - publish
+        - shorebird
+      flutter: stable
+    publishing:
+      email:
+        recipients:
+          - ${PUBLISH_EMAIL}
+    scripts:
+      - name: Run pub get
+        script: flutter pub get
+      - name: Setup Shorebird
+        script: |
+          # Install Shorebird
+          curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
+
+          # Add Shorebird to PATH
+          echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
+      - name: Shorebird Build (development)
+        script: shorebird release android --artifact apk --flavor development --force
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: dev
+      cancel_previous_builds: true
+    artifacts:
+      - build/**/outputs/apk/**/*.apk
