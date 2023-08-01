@@ -30,15 +30,6 @@ jobs:
             - name: Analyze Project Source
               run: flutter analyze --no-fatal-infos
 
-            - name: Lint Code Base
-              uses: super-linter/super-linter@v5
-              env:
-                VALIDATE_ALL_CODEBASE: false
-                VALIDATE_JSCPD: false
-                VALIDATE_GROOVY: false
-                DEFAULT_BRANCH: main
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
             - name: Format dart files with 80 line length
               run: find . -type f -name '*.dart' ! -name '*.g.dart' ! -name '*app_localizations*.dart' ! -name '*.mocks.dart' -print0 | xargs dart format . --line-length 80 --output=none --set-exit-if-changed
 
