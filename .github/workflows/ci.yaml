@@ -9,6 +9,7 @@ concurrency:
 
 jobs:
     analyze:
+        timeout-minutes: 15
         name: Analyze Code Base
         runs-on: ubuntu-latest
         steps:
