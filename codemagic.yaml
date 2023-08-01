@@ -10,6 +10,7 @@ workflows:
       android_signing:
         - codemagic_android_keystore
       groups:
+        - sentry
         - publish
         - shorebird
       flutter: stable
@@ -28,7 +29,18 @@ workflows:
           # Add Shorebird to PATH
           echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
       - name: Shorebird Build (production)
-        script: shorebird release android --flavor production --force
+        script: |
+              shorebird release android \
+                --flavor production \
+                --force \
+                -- \
+                --dart-define=SENTRY_DSN=$SENTRY_DSN \
+                --dart-define=SENTRY_RELEASE=$SENTRY_RELEASE \
+                --dart-define=SENTRY_ENVIRONMENT=Production
+                --obfuscate
+                --split-debug-info=out/android/debug-symbols/
+
+              dart run sentry_dart_plugin
     triggering:
       events:
         - push
@@ -49,6 +61,7 @@ workflows:
       android_signing:
         - codemagic_android_keystore
       groups:
+        - sentry
         - publish
         - shorebird
       flutter: stable
@@ -67,7 +80,19 @@ workflows:
           # Add Shorebird to PATH
           echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
       - name: Shorebird Build (development)
-        script: shorebird release android --artifact apk --flavor development --force
+        script: |
+              shorebird release android \
+                --artifact apk \
+                --flavor development \
+                --force \
+                -- \
+                --dart-define=SENTRY_DSN=$SENTRY_DSN \
+                --dart-define=SENTRY_RELEASE=$SENTRY_RELEASE \
+                --dart-define=SENTRY_ENVIRONMENT=Development
+                --obfuscate
+                --split-debug-info=out/android/debug-symbols/
+
+              dart run sentry_dart_plugin
     triggering:
       events:
         - push
