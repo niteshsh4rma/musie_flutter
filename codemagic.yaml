@@ -31,6 +31,7 @@ workflows:
       - name: Shorebird Build (production)
         script: |
               shorebird release android \
+                --artifact apk \
                 --flavor production \
                 --force \
                 -- \
@@ -100,4 +101,5 @@ workflows:
         - pattern: dev
       cancel_previous_builds: true
     artifacts:
+      - build/**/outputs/bundle/**/*.aab
       - build/**/outputs/apk/**/*.apk
