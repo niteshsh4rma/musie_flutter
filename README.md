@@ -38,7 +38,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them.
 
 ```bash
-flutter - stable
+flutter - 3.10.6
 fvm - latest
 ```
 
