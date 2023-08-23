@@ -10,5 +10,7 @@
     "folders": "Folders",
     "seeAll": "See All",
     "recentlyPlayed": "Recently Played",
-    "mostPlayed": "Most Played"
+    "mostPlayed": "Most Played",
+    "allow": "Allow",
+    "noAccess": "Musie doesn't have access to the library"
 }

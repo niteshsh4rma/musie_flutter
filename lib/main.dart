@@ -9,40 +9,34 @@ import 'package:musie/start/setup.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 void main() {
-  final initFuture = Setup.instance.init();
+  runZonedGuarded(
+    () {
+      WidgetsFlutterBinding.ensureInitialized();
+      final initFuture = Setup.instance.init();
 
-  if (kReleaseMode) {
-    runZonedGuarded(
-      () => SentryFlutter.init(
-        (options) async => await Setup.instance.setupSentry(options),
-        appRunner: () => run(initFuture),
-      ),
-      (error, stack) {
-        logError('Unhandled error: $error', null, stack);
-        debugPrintStack(stackTrace: stack);
-      },
-    );
-  } else {
-    runZonedGuarded(
-      () {
+      if (kReleaseMode) {
+        SentryFlutter.init(
+          (options) async => await Setup.instance.setupSentry(options),
+          appRunner: () => run(initFuture),
+        );
+      } else {
         FlutterError.onError = (details) {
           FlutterError.presentError(details);
           logError('FlutterError details: $details');
         };
 
         run(initFuture);
-      },
-      (error, stack) {
-        logError('Unhandled error: $error', null, stack);
-        debugPrintStack(stackTrace: stack);
-      },
-    );
-  }
+      }
+    },
+    (error, stack) {
+      logError('Unhandled error: $error', null, stack);
+      debugPrintStack(stackTrace: stack);
+    },
+  );
 }
 
 void run(Future<void> future) async {
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(
     FutureBuilder(
       future: future,
@@ -50,11 +44,17 @@ void run(Future<void> future) async {
       builder: (context, snapshot) =>
           snapshot.connectionState == ConnectionState.done
               ? const MusieApp()
-              : Center(
-                  child: Image.asset(
-                    AssetConstants.appIcon,
-                    width: 150,
-                    height: 150,
+              : Container(
+                  color: MediaQuery.of(context).platformBrightness ==
+                          Brightness.dark
+                      ? Colors.black
+                      : Colors.white,
+                  child: Center(
+                    child: Image.asset(
+                      AssetConstants.appIcon,
+                      width: 150,
+                      height: 150,
+                    ),
                   ),
                 ),
     ),

@@ -8,6 +8,7 @@ import 'package:musie/features/home/tabs/artists_tab.dart';
 import 'package:musie/features/home/tabs/folders_tab.dart';
 import 'package:musie/features/home/tabs/songs_tab.dart';
 import 'package:musie/features/home/tabs/suggested_tab.dart';
+import 'package:musie/start/setup.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -53,14 +54,48 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ],
-          body: const TabBarView(
-            children: [
-              SuggestedTab(),
-              SongsTab(),
-              ArtistsTab(),
-              AlbumsTab(),
-              FoldersTab(),
-            ],
+          body: FutureBuilder(
+            future: Setup.instance.audioQuery.permissionsStatus(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data == true) {
+                  return const TabBarView(
+                    children: [
+                      SuggestedTab(),
+                      SongsTab(),
+                      ArtistsTab(),
+                      AlbumsTab(),
+                      FoldersTab(),
+                    ],
+                  );
+                } else {
+                  return Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            CocoIconBold.Shield_vulnerable,
+                            size: 72,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(context.loc.noAccess),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
           ),
         ),
       ),

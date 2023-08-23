@@ -16,7 +16,9 @@ dependencies:
     sdk: flutter
   google_fonts: ^5.1.0
   intl: any
+  just_audio: ^0.9.34
   loggy: ^2.0.3
+  on_audio_query: ^2.9.0
   package_info_plus: ^4.1.0
   sentry_flutter: ^7.9.0
 
