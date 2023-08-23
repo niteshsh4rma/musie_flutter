@@ -5,7 +5,6 @@
             "name": "musie_flutter (development)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release",
             "args": ["--flavor", "development"]
         },
         {

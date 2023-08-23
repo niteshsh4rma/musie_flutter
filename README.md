@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="" rel="noopener">
-  <img width=200px height=200px src="assets/images/app_icon.png" alt="Musie logo"></a>
+  <img width=200px height=200px src="assets/images/app-icon.png" alt="Musie logo"></a>
 </h1>
 
 <h1 align="center">Musie</h3>

@@ -9,8 +9,6 @@ import 'package:musie/start/setup.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
   final initFuture = Setup.instance.init();
 
   if (kReleaseMode) {
@@ -26,9 +24,11 @@ void main() {
     );
   } else {
     runZonedGuarded(
-      () => FlutterError.onError = (details) {
-        FlutterError.presentError(details);
-        logError('FlutterError details: $details');
+      () {
+        FlutterError.onError = (details) {
+          FlutterError.presentError(details);
+          logError('FlutterError details: $details');
+        };
 
         run(initFuture);
       },
@@ -41,6 +41,8 @@ void main() {
 }
 
 void run(Future<void> future) async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     FutureBuilder(
       future: future,
@@ -49,7 +51,11 @@ void run(Future<void> future) async {
           snapshot.connectionState == ConnectionState.done
               ? const MusieApp()
               : Center(
-                  child: Image.asset(AssetConstants.appIcon),
+                  child: Image.asset(
+                    AssetConstants.appIcon,
+                    width: 150,
+                    height: 150,
+                  ),
                 ),
     ),
   );
