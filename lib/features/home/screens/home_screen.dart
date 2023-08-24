@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:musie/core/extensions/context_extensions.dart';
 import 'package:musie/features/home/tabs/albums_tab.dart';
 import 'package:musie/features/home/tabs/artists_tab.dart';
-import 'package:musie/features/home/tabs/folders_tab.dart';
 import 'package:musie/features/home/tabs/songs_tab.dart';
 import 'package:musie/features/home/tabs/suggested_tab.dart';
 import 'package:musie/start/setup.dart';
@@ -17,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 4,
       child: Scaffold(
         body: NestedScrollView(
           physics: const BouncingScrollPhysics(),
@@ -49,7 +48,6 @@ class HomeScreen extends StatelessWidget {
                   Tab(text: context.loc.songs),
                   Tab(text: context.loc.artists),
                   Tab(text: context.loc.albums),
-                  Tab(text: context.loc.folders),
                 ],
               ),
             ),
@@ -65,7 +63,6 @@ class HomeScreen extends StatelessWidget {
                       SongsTab(),
                       ArtistsTab(),
                       AlbumsTab(),
-                      FoldersTab(),
                     ],
                   );
                 } else {

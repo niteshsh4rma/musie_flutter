@@ -7,10 +7,10 @@
     "songs": "Songs",
     "artists": "Artists",
     "albums": "Albums",
-    "folders": "Folders",
     "seeAll": "See All",
     "recentlyPlayed": "Recently Played",
     "mostPlayed": "Most Played",
     "allow": "Allow",
-    "noAccess": "Musie doesn't have access to the library"
+    "noAccess": "Musie doesn't have access to the library",
+    "unknown": "Unknown"
 }
