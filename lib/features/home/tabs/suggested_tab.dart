@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musie/core/extensions/context_extensions.dart';
+import 'package:musie/shared/extensions/context_extensions.dart';
 
 class SuggestedTab extends StatelessWidget {
   const SuggestedTab({super.key});

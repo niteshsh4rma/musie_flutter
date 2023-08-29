@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cocoicons/cocoicons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:musie/core/extensions/context_extensions.dart';
+import 'package:musie/shared/extensions/context_extensions.dart';
 import 'package:musie/features/home/tabs/albums_tab.dart';
 import 'package:musie/features/home/tabs/artists_tab.dart';
 import 'package:musie/features/home/tabs/songs_tab.dart';
@@ -37,7 +37,8 @@ class HomeScreen extends StatelessWidget {
               actions: [
                 IconButton(
                   tooltip: context.loc.search,
-                  onPressed: () {},
+                  onPressed: () {
+                  },
                   icon: const Icon(CocoIconLine.Search),
                 )
               ],

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cocoicons/cocoicons.dart';
 import 'package:flutter/material.dart';
-import 'package:musie/core/extensions/context_extensions.dart';
+import 'package:musie/shared/extensions/context_extensions.dart';
 
 class BottomBar extends StatelessWidget {
   final TabsRouter tabsRouter;

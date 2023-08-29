@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:musie/core/navigation/route_paths.dart';
+import 'package:musie/navigation/route_paths.dart';
 import 'package:musie/features/dashboard/screens/dashboard_screen.dart';
 import 'package:musie/features/home/screens/home_screen.dart';
 
