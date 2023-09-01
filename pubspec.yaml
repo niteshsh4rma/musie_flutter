@@ -24,7 +24,7 @@ dependencies:
   on_audio_query: ^2.9.0
   package_info_plus: ^4.1.0
   sentry_flutter: ^7.9.0
-  shared_preferences: ^2.2.0
+  shared_preferences: ^2.2.1
 
 dev_dependencies:
   auto_route_generator: ^7.3.1
