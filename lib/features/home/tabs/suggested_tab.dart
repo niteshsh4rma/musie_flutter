@@ -53,7 +53,7 @@ class SuggestedTab extends StatelessWidget {
           onSeeAll: () {},
         ),
         SizedBox(
-          height: 170,
+          height: 176,
           child: ListView.separated(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -93,7 +93,7 @@ class SuggestedTab extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(4),
               child: Text(
-                'Shades of Lovesdfsdfsdfsdfsdfsdfsdfds sdfdsfsd sdfds',
+                'Lorem Ipsum',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -162,8 +162,8 @@ class SuggestedTab extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 128,
-              width: 128,
+              height: 120,
+              width: 120,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(16),
@@ -179,7 +179,7 @@ class SuggestedTab extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(4),
               child: Text(
-                'Shades of Lovesdfsdfsdfsdfsdfsdfsdfds sdfdsfsd sdfds',
+                'Lorem Ipsum',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),

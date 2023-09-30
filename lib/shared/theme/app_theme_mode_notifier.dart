@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:musie/shared/constants/global_constants.dart';
 import 'package:musie/shared/data/local/storage_service.dart';
@@ -12,21 +13,30 @@ final appThemeProvider = StateNotifierProvider<AppThemeModeNotifier, ThemeMode>(
 );
 
 class AppThemeModeNotifier extends StateNotifier<ThemeMode> {
-  final StroageService storageService;
+  final StorageService storageService;
 
-  AppThemeModeNotifier(this.storageService) : super(ThemeMode.system) {
-    getCurrentTheme();
+  AppThemeModeNotifier(this.storageService) : super(ThemeMode.light) {
+    loadCurrentTheme();
   }
 
   void toggleTheme() {
     state = state == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    setSystemUIOverlayStyle();
     storageService.set(GlobalConstants.appThemeStorageKey, state.name);
   }
 
-  void getCurrentTheme() async {
+  void loadCurrentTheme() async {
     final theme = await storageService.get(GlobalConstants.appThemeStorageKey);
     final value = ThemeMode.values.byName('${theme ?? ThemeMode.light.name}');
     storageService.set(GlobalConstants.appThemeStorageKey, value.name);
     state = value;
+    setSystemUIOverlayStyle();
+  }
+
+  void setSystemUIOverlayStyle() {
+    final isDarkMode = state == ThemeMode.dark;
+    SystemChrome.setSystemUIOverlayStyle(
+      isDarkMode ? SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
+    );
   }
 }

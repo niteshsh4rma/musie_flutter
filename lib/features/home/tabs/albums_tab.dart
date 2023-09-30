@@ -36,11 +36,12 @@ class AlbumsTab extends StatelessWidget {
                     ),
                   ),
                   const Divider(
+                    height: 0,
                     thickness: 2,
                   ),
                   Expanded(
                     child: ListView.builder(
-                      padding: EdgeInsets.zero,
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
                         final album = albums[index];

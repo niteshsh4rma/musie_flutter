@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cocoicons/cocoicons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:musie/navigation/app_router.dart';
 import 'package:musie/shared/extensions/context_extensions.dart';
 import 'package:musie/features/home/tabs/albums_tab.dart';
 import 'package:musie/features/home/tabs/artists_tab.dart';
 import 'package:musie/features/home/tabs/songs_tab.dart';
-import 'package:musie/features/home/tabs/suggested_tab.dart';
 import 'package:musie/start/setup.dart';
 
 @RoutePage()
@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         body: NestedScrollView(
           physics: const BouncingScrollPhysics(),
@@ -35,17 +35,32 @@ class HomeScreen extends StatelessWidget {
               pinned: true,
               floating: true,
               actions: [
-                IconButton(
-                  tooltip: context.loc.search,
-                  onPressed: () {
+                PopupMenuButton(
+                  icon: const Icon(CocoIconLine.Menu_1),
+                  tooltip: context.loc.menu,
+                  position: PopupMenuPosition.under,
+                  itemBuilder: (context) {
+                    return [
+                      PopupMenuItem(
+                        padding: EdgeInsets.zero,
+                        child: ListTile(
+                          dense: true,
+                          leading: const Icon(CocoIconLine.Setting_2),
+                          title: Text(context.loc.settings),
+                          onTap: () {
+                            context.popRoute();
+                            context.pushRoute(const SettingsRoute());
+                          },
+                        ),
+                      ),
+                    ];
                   },
-                  icon: const Icon(CocoIconLine.Search),
-                )
+                ),
               ],
               bottom: TabBar(
-                isScrollable: true,
                 tabs: [
-                  Tab(text: context.loc.suggested),
+                  // TODO: to be implemented in future
+                  // Tab(text: context.loc.suggested),
                   Tab(text: context.loc.songs),
                   Tab(text: context.loc.artists),
                   Tab(text: context.loc.albums),
@@ -60,7 +75,8 @@ class HomeScreen extends StatelessWidget {
                 if (snapshot.data == true) {
                   return const TabBarView(
                     children: [
-                      SuggestedTab(),
+                      // TODO: to be implemented in future
+                      // SuggestedTab(),
                       SongsTab(),
                       ArtistsTab(),
                       AlbumsTab(),

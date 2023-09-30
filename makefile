@@ -1,5 +1,8 @@
 setup:
-	fvm flutter clean && fvm flutter pub get
+	make clean && make get && make translations
+
+get:
+	fvm flutter pub get
 
 clean:
 	fvm flutter clean

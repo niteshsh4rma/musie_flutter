@@ -1,3 +1,4 @@
+import 'package:musie/services/audio_player_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -12,7 +13,12 @@ class Setup {
   Future<void> init() async {
     await Future.wait([
       setupMedia(retryRequest: true),
+      setupAudioPlayer(),
     ]);
+  }
+
+  Future<void> setupAudioPlayer() {
+    return AudioPlayerService.instance.init();
   }
 
   Future<bool> setupMedia({bool retryRequest = false}) async {

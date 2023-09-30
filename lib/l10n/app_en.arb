@@ -12,5 +12,9 @@
     "mostPlayed": "Most Played",
     "allow": "Allow",
     "noAccess": "Musie doesn't have access to the library",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "menu": "Menu",
+    "exit": "Exit",
+    "theme": "Theme",
+    "filterSongs": "Filter Songs"
 }

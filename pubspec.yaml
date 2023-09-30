@@ -19,7 +19,7 @@ dependencies:
   flutter_riverpod: ^2.3.10
   google_fonts: ^5.1.0
   intl: any
-  just_audio: ^0.9.34
+  just_audio: ^0.9.35
   loggy: ^2.0.3
   on_audio_query: ^2.9.0
   package_info_plus: ^4.1.0
